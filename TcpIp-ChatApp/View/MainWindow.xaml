@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:TcpIp_ChatApp" 
         xmlns:viewmodel="clr-namespace:TcpIp_ChatApp.ViewModel"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="MainWindow" Height="472" Width="815">
 
     <Window.DataContext>
         <viewmodel:MainViewModel/>
@@ -34,14 +34,16 @@
             </ListView>
         </DockPanel>
         <StackPanel Grid.Column="1">
-            <ListView Height="380"/>
+            <ListView Height="380" ItemsSource="{Binding Messages}"/>
 
             <StackPanel Orientation="Horizontal">
                 <TextBox Height="55"
                          Width="545"
-                         VerticalContentAlignment="Center"/>
+                         VerticalContentAlignment="Center"
+                         Text="{Binding Message, UpdateSourceTrigger=PropertyChanged}"/>
                 <Button Width="55" 
-                        Content="Send"/>
+                        Content="Send"
+                        Command="{Binding SendMessageCommand}"/>
             </StackPanel>
             
         </StackPanel>
