@@ -44,6 +44,9 @@ namespace ChatServer
                             var msg = _packetReader.ReadMessage();
                             Console.WriteLine($"[{DateTime.Now}]: Message Received! {msg}");
                             Program.BroadcastMessage($"[{DateTime.Now}]: [{Username}]: {msg}");
+
+                            SendAcknowledgment("ACK");
+
                             break;
                         default:
                             break;
@@ -57,6 +60,28 @@ namespace ChatServer
                     break;
                 }
             }
+
         }
+
+        private void SendAcknowledgment(string ackMessage)
+        {
+            try
+            {
+                var ackPacket = new PacketBuilder();
+                ackPacket.WriteOpcode(6);  // Opcode for acknowledgment
+                ackPacket.WriteMessage("ACK\r\n");  // Acknowledgment message
+                ClientSocket.Client.Send(ackPacket.GetPacketBytes());
+                Console.WriteLine("Acknowledgement sent to client.");
+            }
+            catch (Exception ex) 
+            {
+                Console.WriteLine($"Failed to send acknowledgment : {ex.Message}");
+            }
+            
+
+        }
+        
+
     }
+
 }

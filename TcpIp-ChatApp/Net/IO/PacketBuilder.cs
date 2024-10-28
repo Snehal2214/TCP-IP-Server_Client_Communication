@@ -22,7 +22,7 @@ namespace TcpIp_ChatApp.Net.IO
         {
             var msgLength = msg.Length;
             _ms.Write(BitConverter.GetBytes(msgLength),0, sizeof(int));
-            byte[] msgBytes = Encoding.ASCII.GetBytes(msg);
+            byte[] msgBytes = Encoding.UTF8.GetBytes(msg);
             _ms.Write(msgBytes, 0, msgBytes.Length);
         }
         public Byte[] GetPacketBytes() 

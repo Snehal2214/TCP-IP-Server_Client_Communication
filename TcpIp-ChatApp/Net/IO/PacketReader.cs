@@ -17,15 +17,14 @@ namespace TcpIp_ChatApp.Net.IO
         }
         public string ReadMessage()
         {
-            byte[] msgBuffer;
-            var length = ReadInt32();
-            msgBuffer = new byte[length];
-            _ns.Read(msgBuffer, 0, length);
-
-            var msg = Encoding.ASCII.GetString(msgBuffer);
-            return msg;
+           
+            var msgLength = ReadInt32();
+            byte[] msgBytes = ReadBytes(msgLength);
+            _ns.Write(msgBytes, 0, msgBytes.Length);
+            return Encoding.UTF8.GetString(msgBytes);
         }
 
+        
 
     }
 }

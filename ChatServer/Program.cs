@@ -7,8 +7,8 @@ namespace ChatServer
 {
     public class Program
     {
-        static List<Client> ?_users;
-        static TcpListener ?_listener;
+        static List<Client>? _users;
+        static TcpListener? _listener;
         static void Main(string[] args)
         {
             _users = new List<Client>();

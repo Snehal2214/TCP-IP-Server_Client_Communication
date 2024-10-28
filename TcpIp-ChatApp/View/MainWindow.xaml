@@ -25,15 +25,24 @@
                     DockPanel.Dock="Top"
                     Content="Connect"
                     Command="{Binding ConnectToServerCommand}"/>
-            <ListView ItemsSource="{Binding Users}">
-                <ListView.ItemTemplate>
-                    <DataTemplate>
-                        <TextBlock Text="{Binding Username}"/>
-                    </DataTemplate>
-                </ListView.ItemTemplate>
-            </ListView>
+            <StackPanel>
+                <Button Height="25" Content="Send Excel Data"
+                        Command="{Binding SendExcelDataCommand}"/>
+                <ListView ItemsSource="{Binding Users}">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding Username}" />
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+
+                </ListView>
+                
+
+            </StackPanel>
+            
         </DockPanel>
         <StackPanel Grid.Column="1">
+
             <ListView Height="380" ItemsSource="{Binding Messages}"/>
 
             <StackPanel Orientation="Horizontal">
@@ -46,6 +55,7 @@
                         Command="{Binding SendMessageCommand}"/>
             </StackPanel>
             
+
         </StackPanel>
         
     </Grid>
